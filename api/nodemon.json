@@ -1,0 +1,10 @@
+{
+    "watch": [
+        "src", 
+        "prisma/schema.prisma"
+    ],
+    "ext": "js,json,prisma",
+    "exec": "node --trace-warnings src/server.js",
+    "ignore": ["node_modules/*"]
+  }
+  

@@ -5,8 +5,12 @@ import Input from '../components/Input'
 import PayStack from '../assets/Payment.png'
 import { Button } from '../components/Buttons'
 import { Delete, DollarSign, Edit, Phone, Trash } from 'lucide-react'
+import useCartStore from '../store/useCartStore'
 
 const Checkout = () => {
+    const cart = useCartStore((state) => state.cart);
+    const removeItem = useCartStore((state) => state.removeItem);
+    const editItem = useCartStore((state) => state.editItem);
   return (
     <MaxWidth>
         <div className="flex gap-5">
@@ -21,33 +25,40 @@ const Checkout = () => {
                             <h3 className="text-xl font-black text-gray-900 ">Your cart</h3>
                         </div>
                         <div className="">
-                            <div className="flex items-center justify-between gap-4 p-2 border border-gray-100 rounded-lg">
+                        {cart.map((item, index) => (
+                            <div key={index} className="flex items-center justify-between gap-4 p-2 border border-gray-100 rounded-lg">
+
                                 <div className="flex items-center gap-4">
                                     <div className='w-12 h-12 bg-gray-200 rounded-lg'></div>
                                     <div className="flex flex-col gap-2">
-                                        <h3 className="text-sm font-semibold ">Mtn Airtime</h3>
+                                        <h3 className="text-sm font-semibold ">{item.provider} Airtime</h3>
                                         <div className="flex items-center gap-5 text-xs text-gray-500">
                                             <span className="flex items-center gap-3">
                                                 <Phone size={12}/>
-                                                000 0000 0000
+                                                {item.phone}
                                             </span>
                                             <span className="flex items-center gap-3">
                                                 <DollarSign size={12} />
-                                                ₦1000
+                                                ₦ {item.plan}
                                             </span>
                                             
                                         </div>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-2 text-xs text-gray-500 ">
-                                    <button className="flex items-center justify-center rounded-full w-7 h-7 hover:bg-primary/25 hover:text-primary">
+                                    <button className="flex items-center justify-center rounded-full w-7 h-7 hover:bg-primary/25 hover:text-primary"
+                                    onClick={() => removeItem(index)}
+                                    >
                                         <Trash size={16}/>
                                     </button>
-                                    <button className="flex items-center justify-center rounded-full w-7 h-7 hover:bg-primary/25 hover:text-primary">
+                                    <button className="flex items-center justify-center rounded-full w-7 h-7 hover:bg-primary/25 hover:text-primary"
+                                     onClick={() => editItem(index, { ...item, plan: 'New Plan' })}
+                                    >
                                         <Edit size={16}/>
                                     </button>
                                 </div>
                             </div>
+                        ))}
                         </div>
                     </div>
                 </Card>

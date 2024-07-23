@@ -18,13 +18,13 @@ const Footer = () => {
       </div>
     </div>
       <footer className="flex flex-col w-full min-h-[40vh] gap-10 text-[#EFEAFD] bg-primary px-3 md:px-20 py-10 justify-between">
-        <div className="flex flex-col items-center justify-between w-full md:flex-row ">
+        <div className="flex flex-col items-center w-full md:justify-between md:items-start md:flex-row ">
           <div className=" w-full md:w-[390px]">
             <p className="text-sm text-center md:text-base md:text-left">
             Lorem ipsum dolor sit amet consectetur. Gravida bibendum interdum vel vivamus dignissim consectetur enim in. Ultricies accumsan egestas ultrices mi adipiscing ultrices ornare. Mauris elementum accumsan elementum rhoncus risus sed.
             </p>
           </div>
-          <div className="flex flex-wrap items-center w-full gap-10 md:items-start ">
+          <div className="flex flex-wrap items-center w-full gap-10 md:flex-grow md:items-start ">
             <div className="flex flex-col gap-4 ">
               <h2 className="text-base font-black leading-6">Company</h2>
               <ul className="flex flex-col gap-3 ">

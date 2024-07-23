@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <>
     <div className=" w-full h-[300px] flex justify-center items-center text-center">
-      <div className="flex flex-col items-center justify-center w-[751px] gap-10 ">
+      <div className="flex flex-col items-center justify-center w-full md:w-[751px] gap-10 px-3 md:px-0 ">
         <div className="flex flex-col gap-3 ">
           <h3 className=" text-2xl font-black leading-8 text-[#101828]">Newsletter</h3>
           <p className=" text-sm text-[#475467] font-normal">Be the first one to know  about discounts, offers and events weekly in your mailbox. Unsubscribe whenever you like with one click.</p>
@@ -17,14 +17,14 @@ const Footer = () => {
         </div>
       </div>
     </div>
-      <footer className="flex flex-col w-full min-h-[40vh] gap-10 text-[#EFEAFD] bg-primary px-20 py-10 justify-between">
-        <div className="flex items-center justify-between w-full ">
-          <div className=" w-[390px]">
-            <p className="">
+      <footer className="flex flex-col w-full min-h-[40vh] gap-10 text-[#EFEAFD] bg-primary px-3 md:px-20 py-10 justify-between">
+        <div className="flex flex-col items-center justify-between w-full md:flex-row ">
+          <div className=" w-full md:w-[390px]">
+            <p className="text-sm text-center md:text-base md:text-left">
             Lorem ipsum dolor sit amet consectetur. Gravida bibendum interdum vel vivamus dignissim consectetur enim in. Ultricies accumsan egestas ultrices mi adipiscing ultrices ornare. Mauris elementum accumsan elementum rhoncus risus sed.
             </p>
           </div>
-          <div className="flex items-start gap-10 ">
+          <div className="flex flex-wrap items-center w-full gap-10 md:items-start ">
             <div className="flex flex-col gap-4 ">
               <h2 className="text-base font-black leading-6">Company</h2>
               <ul className="flex flex-col gap-3 ">

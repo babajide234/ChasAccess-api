@@ -17,10 +17,13 @@ model Token {
 
 model CartItem {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  phone     String
-  plan      String
-  email     String
+  phone     String?
+  plan      String?
+  amount    Float?
+  email     String?
   provider  String
+  type      String
+  userId    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

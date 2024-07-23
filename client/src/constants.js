@@ -10,6 +10,20 @@ const navItems = [
     { name: 'FAQs', path: '/faqs' },
     { name: 'Contact', path: '/contact' }
 ];
+const mobilenavItems = [
+    { name: 'Home', path: '/' },
+    { name: 'Market place', path: '', children:[
+      { name: 'Books', path: '/categories/books' },
+      { name: 'Business', path: '/categories/business' },
+      { name: 'Bills Payments', path: '/bills-payments' },
+      { name: 'Design', path: '/categories/design' },
+      { name: 'Events', path: '/categories/events' },
+      { name: 'Design', path: '/categories/design' },
+      { name: 'Personal development', path: '/categories/personal-development' },
+    ] },
+    { name: 'FAQs', path: '/faqs' },
+    { name: 'Contact', path: '/contact' }
+];
 
 // src/categories.js
 const categories = [
@@ -30,4 +44,4 @@ const categories = [
     { src: Airtel, label: 'Airtel', value: 'airtel' },
   ];
   
-export { navItems, categories, providers };
+export { navItems, categories, providers,mobilenavItems };

@@ -9,7 +9,7 @@ router.get('/info/:sid',async (req,res)=>{
 
     console.log(id);
     
-    const response = await instance.get(`${paths.airtime.info + id}`);
+    const response = await instance.get(`${paths.data.info + id}`);
     console.log(response.data);
 
 
@@ -22,7 +22,7 @@ router.post('/topup/:sid',async (req,res)=>{
     const { product_id, denomination, send_sms, sms_text, customer_reference } = req.body;
 
     try {
-        const response = await instance.post(`${paths.airtime.topup}${id}`, {
+        const response = await instance.post(`${paths.data.topup}${id}`, {
             product_id,
             denomination,
             send_sms,

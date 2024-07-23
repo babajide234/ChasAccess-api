@@ -5,7 +5,7 @@ import { cn } from "../lib/utils";
 import PropTypes from "prop-types";
 
 const buttonVariants = cva(
-  "flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background capitalize rounded-full  ",
+  "flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background capitalize",
   {
     variants: {
       variant: {
@@ -13,10 +13,10 @@ const buttonVariants = cva(
         outline: "border border-[#CFC0F9] text-primary ",
       },
       size: {
-        default: " min-w-[144px] gap-3 py-[14px] px-[32px] rounded-full",
+        default: " min-w-[144px] gap-3 py-[14px] px-[32px] rounded-3xl",
         sm: "h-9 px-3 rounded-full",
         lg: "h-11 px-8 rounded-full",
-        icon: " h-[48px] w-[48px] rounded-full",
+        icon: " h-[48px] w-[48px] rounded-3xl",
         full: " w-full flex-grow py-[14px] px-[32px] rounded-full",
       },
     },
@@ -46,7 +46,7 @@ Button.displayName = "Button";
 Button.propTypes = {
   className: PropTypes.string,
   variant: PropTypes.oneOf(["default", "destructive", "outline", "secondary", "ghost", "link"]),
-  size: PropTypes.oneOf(["default", "sm", "lg", "icon"]),
+  size: PropTypes.oneOf(["default", "sm", "lg", "icon","full"]),
   asChild: PropTypes.bool,
 };
 

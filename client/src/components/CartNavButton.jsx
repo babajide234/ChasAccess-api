@@ -5,7 +5,6 @@ import useCartStore from '../store/useCartStore'
 
 const CartNavButton = () => {
   const items = useCartStore((state) => state.items);
-
   return (
     <Link to="/checkout" className={buttonVariants({
         variant:"default",

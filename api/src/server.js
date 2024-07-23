@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const authMiddleware = require('./middleware/authmiddleware');
 const airtimeRoutes =  require('./api/routes/airtime');
 const cartRoutes =  require('./api/routes/cart');
+const dataRoutes =  require('./api/routes/data');
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -16,6 +17,7 @@ app.use(authMiddleware);
 
 
 app.use('/api/airtime', airtimeRoutes);
+app.use('/api/data', dataRoutes);
 app.use('/api/cart', cartRoutes);
 
 app.listen(port, () => {

@@ -5,51 +5,45 @@ import { useMutation } from '@tanstack/react-query';
 import { Formik, Form } from 'formik';
 import { Button } from "./Buttons";
 import { providers } from "../constants";
-import Checkbox from "./Checbox";
+import Checkbox from "./Checkbox";
 import useCartStore from "../store/useCartStore";
+import { toast } from "react-toastify";
 
 const validationSchema = Yup.object({
   phone: Yup.string().required('Phone number is required'),
-  plan: Yup.string().required('Plan is required'),
+  amount: Yup.string().required('Amount is required'),
   email: Yup.string().email('Invalid email address').required('Email is required'),
 });
 
 const BuyAirtime = () => {
   const [selectedProvider, setSelectedProvider] = useState('');
   const addItemToCart = useCartStore((state) => state.addItem);
+  // const loadCartFromLocalStorage = useCartStore((state) => state.loadCartFromLocalStorage);
 
-  const mutation = useMutation(async (formData) => {
-    const response = await fetch('/api/airtime', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
+  const mutation = useMutation({
+    mutationFn: async (data) => addItemToCart(data),
+    onSuccess: () => {
+      toast.success('Item added to cart successfully');
+    },
+    onError: (error) => {
+      toast.error(`Error: ${error.message}`);
+    },
   });
 
   const handleSubmit = (values) => {
-    mutation.mutate({ ...values, provider: selectedProvider });
+    mutation.mutate({ ...values, provider: selectedProvider, type: 'airtime' });
   };
 
   const handleProviderChange = (e) => {
-    console.log(e.target.value)
-    console.log("provider")
     setSelectedProvider(e.target.value);
   };
 
-  const handleAddToCart = (values) => {
-    console.log({ ...values, provider: selectedProvider })
-    addItemToCart({ ...values, provider: selectedProvider });
-  };
+  // const handleAddToCart = (values) => {
+  //   addItemToCart({ ...values, provider: selectedProvider });
+  // };
 
   return (
-    <div className="flex flex-col w-[60%] h-full gap-5">
+    <div className="flex flex-col w-full md:w-[60%] h-full gap-5">
       <div className="flex flex-col w-full gap-2">
         <h2 className="text-xl font-bold leading-8">Buy airtime</h2>
         <p className="text-base font-normal leading-6 text-gray-500">Please enter your details.</p>
@@ -58,7 +52,7 @@ const BuyAirtime = () => {
       <Formik
         initialValues={{
           phone: '',
-          plan: '',
+          amount: '',
           email: '',
           provider: ''
         }}
@@ -66,7 +60,7 @@ const BuyAirtime = () => {
         onSubmit={handleSubmit}
       >
         {({ values, handleChange, isValid }) => (
-          <Form className="flex flex-col gap-5">
+          <Form className="flex flex-col w-full gap-5">
             <div className="flex justify-between w-full gap-4">
               {providers.map((provider) => (
                 <Checkbox
@@ -83,15 +77,16 @@ const BuyAirtime = () => {
               type="text"
               label="Phone Number"
               name="phone"
+              id="phone"
               value={values.phone}
               onChange={handleChange}
               placeholder=" "
             />
             <Input
               type="text"
-              label="Plan"
-              name="plan"
-              value={values.plan}
+              label="Amount"
+              name="amount"
+              value={values.amount}
               onChange={handleChange}
               placeholder=" "
             />
@@ -103,13 +98,14 @@ const BuyAirtime = () => {
               onChange={handleChange}
               placeholder=" "
             />
-            <div className="flex items-center justify-between w-full gap-5">
+            <div className="flex flex-col items-center justify-between w-full gap-5 md:flex-row">
               <Button
                 size="full"
                 variant="outline"
                 disabled={!isValid}
-                onClick={() => handleAddToCart(values)}
+                loading={true}
               >
+
                 Add to cart
               </Button>
               <Button size="full" variant="default" disabled={!isValid}>
